@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <edmx:Reference Uri="/sap/opu/odata4/vocabularies/UI.xml">
+    <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="/sap/opu/odata4/vocabularies/Common.xml">
+    <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="/sap/opu/odata4/vocabularies/Capabilities.xml">
+    <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm"
+            Namespace="com.sap.gateway.srvd.zrap2next_travel.v0001" Alias="SAP__self">
+
+      <EntityType Name="TravelType">
+        <Key>
+          <PropertyRef Name="TravelID"/>
+        </Key>
+        <Property Name="TravelID" Type="Edm.String" Nullable="false" MaxLength="8"/>
+        <Property Name="AgencyID" Type="Edm.String" MaxLength="6"/>
+        <Property Name="CustomerID" Type="Edm.String" MaxLength="6"/>
+        <Property Name="CustomerName" Type="Edm.String" MaxLength="40"/>
+        <Property Name="BeginDate" Type="Edm.Date"/>
+        <Property Name="EndDate" Type="Edm.Date"/>
+        <Property Name="BookingFee" Type="Edm.Decimal" Precision="16" Scale="2"/>
+        <Property Name="TotalPrice" Type="Edm.Decimal" Precision="16" Scale="2"/>
+        <Property Name="CurrencyCode" Type="Edm.String" MaxLength="5"/>
+        <Property Name="Description" Type="Edm.String" MaxLength="1024"/>
+        <Property Name="OverallStatus" Type="Edm.String" MaxLength="1"/>
+        <NavigationProperty Name="_Booking" Type="Collection(SAP__self.BookingType)"/>
+      </EntityType>
+
+      <EntityType Name="BookingType">
+        <Key>
+          <PropertyRef Name="TravelID"/>
+          <PropertyRef Name="BookingID"/>
+        </Key>
+        <Property Name="TravelID" Type="Edm.String" Nullable="false" MaxLength="8"/>
+        <Property Name="BookingID" Type="Edm.String" Nullable="false" MaxLength="4"/>
+        <Property Name="FlightDate" Type="Edm.Date"/>
+        <Property Name="AirlineID" Type="Edm.String" MaxLength="3"/>
+        <Property Name="ConnectionID" Type="Edm.String" MaxLength="4"/>
+        <Property Name="FlightPrice" Type="Edm.Decimal" Precision="16" Scale="2"/>
+        <Property Name="CurrencyCode" Type="Edm.String" MaxLength="5"/>
+      </EntityType>
+
+      <EntityContainer Name="Container">
+        <EntitySet Name="Travel" EntityType="SAP__self.TravelType">
+          <NavigationPropertyBinding Path="_Booking" Target="Booking"/>
+        </EntitySet>
+        <EntitySet Name="Booking" EntityType="SAP__self.BookingType"/>
+      </EntityContainer>
+
+      <Annotations Target="SAP__self.TravelType">
+        <Annotation Term="SAP__UI.HeaderInfo">
+          <Record Type="SAP__UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Travel"/>
+            <PropertyValue Property="TypeNamePlural" String="Travels"/>
+            <PropertyValue Property="Title">
+              <Record Type="SAP__UI.DataField">
+                <PropertyValue Property="Value" Path="CustomerName"/>
+              </Record>
+            </PropertyValue>
+            <PropertyValue Property="Description">
+              <Record Type="SAP__UI.DataField">
+                <PropertyValue Property="Value" Path="Description"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="SAP__UI.LineItem">
+          <Collection>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="TravelID"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="CustomerName"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="BeginDate"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="EndDate"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="TotalPrice"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="OverallStatus"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="SAP__UI.SelectionFields">
+          <Collection>
+            <PropertyPath>OverallStatus</PropertyPath>
+            <PropertyPath>CustomerName</PropertyPath>
+            <PropertyPath>AgencyID</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="SAP__UI.Facets">
+          <Collection>
+            <Record Type="SAP__UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="General"/>
+              <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#General"/>
+            </Record>
+            <Record Type="SAP__UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Dates"/>
+              <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Dates"/>
+            </Record>
+            <Record Type="SAP__UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Prices"/>
+              <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Prices"/>
+            </Record>
+            <Record Type="SAP__UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Bookings"/>
+              <PropertyValue Property="Target" AnnotationPath="_Booking/@SAP__UI.LineItem"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="SAP__UI.FieldGroup" Qualifier="General">
+          <Record Type="SAP__UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="AgencyID"/>
+                </Record>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="CustomerID"/>
+                </Record>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="OverallStatus"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="SAP__UI.FieldGroup" Qualifier="Dates">
+          <Record Type="SAP__UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="BeginDate"/>
+                </Record>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="EndDate"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="SAP__UI.FieldGroup" Qualifier="Prices">
+          <Record Type="SAP__UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="BookingFee"/>
+                </Record>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="TotalPrice"/>
+                </Record>
+                <Record Type="SAP__UI.DataField">
+                  <PropertyValue Property="Value" Path="CurrencyCode"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+      <Annotations Target="SAP__self.BookingType">
+        <Annotation Term="SAP__UI.HeaderInfo">
+          <Record Type="SAP__UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Booking"/>
+            <PropertyValue Property="TypeNamePlural" String="Bookings"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="SAP__UI.LineItem">
+          <Collection>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="BookingID"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="FlightDate"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="AirlineID"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="ConnectionID"/>
+            </Record>
+            <Record Type="SAP__UI.DataField">
+              <PropertyValue Property="Value" Path="FlightPrice"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+
+      <Annotations Target="SAP__self.TravelType/TravelID">
+        <Annotation Term="SAP__common.Label" String="Travel ID"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/AgencyID">
+        <Annotation Term="SAP__common.Label" String="Agency"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/CustomerID">
+        <Annotation Term="SAP__common.Label" String="Customer No."/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/CustomerName">
+        <Annotation Term="SAP__common.Label" String="Customer"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/BeginDate">
+        <Annotation Term="SAP__common.Label" String="Begins"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/EndDate">
+        <Annotation Term="SAP__common.Label" String="Ends"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/BookingFee">
+        <Annotation Term="SAP__common.Label" String="Booking Fee"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/TotalPrice">
+        <Annotation Term="SAP__common.Label" String="Total Price"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/CurrencyCode">
+        <Annotation Term="SAP__common.Label" String="Currency"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/Description">
+        <Annotation Term="SAP__common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="SAP__self.TravelType/OverallStatus">
+        <Annotation Term="SAP__common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="SAP__self.BookingType/BookingID">
+        <Annotation Term="SAP__common.Label" String="Booking No."/>
+      </Annotations>
+      <Annotations Target="SAP__self.BookingType/FlightDate">
+        <Annotation Term="SAP__common.Label" String="Flight Date"/>
+      </Annotations>
+      <Annotations Target="SAP__self.BookingType/AirlineID">
+        <Annotation Term="SAP__common.Label" String="Airline"/>
+      </Annotations>
+      <Annotations Target="SAP__self.BookingType/ConnectionID">
+        <Annotation Term="SAP__common.Label" String="Connection"/>
+      </Annotations>
+      <Annotations Target="SAP__self.BookingType/FlightPrice">
+        <Annotation Term="SAP__common.Label" String="Price"/>
+      </Annotations>
+
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+{
+  "Travel": [
+    { "TravelID": "00000001", "AgencyID": "070001", "CustomerID": "000101", "CustomerName": "Erika Mustermann", "BeginDate": "2026-09-10", "EndDate": "2026-09-17", "BookingFee": "20.00", "TotalPrice": "1712.50", "CurrencyCode": "EUR", "Description": "Business trip to Walldorf", "OverallStatus": "A",
+      "_Booking": [
+        { "TravelID": "00000001", "BookingID": "0001", "FlightDate": "2026-09-10", "AirlineID": "LH", "ConnectionID": "0400", "FlightPrice": "846.25", "CurrencyCode": "EUR" },
+        { "TravelID": "00000001", "BookingID": "0002", "FlightDate": "2026-09-17", "AirlineID": "LH", "ConnectionID": "0401", "FlightPrice": "846.25", "CurrencyCode": "EUR" }
+      ] },
+    { "TravelID": "00000002", "AgencyID": "070002", "CustomerID": "000102", "CustomerName": "Aarav Sharma", "BeginDate": "2026-10-02", "EndDate": "2026-10-09", "BookingFee": "35.00", "TotalPrice": "2410.00", "CurrencyCode": "INR", "Description": "TechEd conference travel", "OverallStatus": "A",
+      "_Booking": [
+        { "TravelID": "00000002", "BookingID": "0001", "FlightDate": "2026-10-02", "AirlineID": "AI", "ConnectionID": "0117", "FlightPrice": "1187.50", "CurrencyCode": "INR" },
+        { "TravelID": "00000002", "BookingID": "0002", "FlightDate": "2026-10-09", "AirlineID": "AI", "ConnectionID": "0118", "FlightPrice": "1187.50", "CurrencyCode": "INR" }
+      ] },
+    { "TravelID": "00000003", "AgencyID": "070001", "CustomerID": "000103", "CustomerName": "Sofia Rossi", "BeginDate": "2026-08-30", "EndDate": "2026-09-02", "BookingFee": "10.00", "TotalPrice": "540.00", "CurrencyCode": "EUR", "Description": "Weekend city break Milan", "OverallStatus": "O",
+      "_Booking": [
+        { "TravelID": "00000003", "BookingID": "0001", "FlightDate": "2026-08-30", "AirlineID": "AZ", "ConnectionID": "0788", "FlightPrice": "265.00", "CurrencyCode": "EUR" },
+        { "TravelID": "00000003", "BookingID": "0002", "FlightDate": "2026-09-02", "AirlineID": "AZ", "ConnectionID": "0789", "FlightPrice": "265.00", "CurrencyCode": "EUR" }
+      ] },
+    { "TravelID": "00000004", "AgencyID": "070003", "CustomerID": "000104", "CustomerName": "Liang Wei", "BeginDate": "2026-11-15", "EndDate": "2026-11-29", "BookingFee": "50.00", "TotalPrice": "4980.00", "CurrencyCode": "CNY", "Description": "Supplier audit Shanghai plant", "OverallStatus": "A",
+      "_Booking": [
+        { "TravelID": "00000004", "BookingID": "0001", "FlightDate": "2026-11-15", "AirlineID": "CA", "ConnectionID": "0932", "FlightPrice": "2465.00", "CurrencyCode": "CNY" },
+        { "TravelID": "00000004", "BookingID": "0002", "FlightDate": "2026-11-29", "AirlineID": "CA", "ConnectionID": "0933", "FlightPrice": "2465.00", "CurrencyCode": "CNY" }
+      ] },
+    { "TravelID": "00000005", "AgencyID": "070002", "CustomerID": "000105", "CustomerName": "Amara Okonkwo", "BeginDate": "2026-09-21", "EndDate": "2026-09-25", "BookingFee": "15.00", "TotalPrice": "1310.75", "CurrencyCode": "USD", "Description": "Customer workshop New York", "OverallStatus": "X",
+      "_Booking": [
+        { "TravelID": "00000005", "BookingID": "0001", "FlightDate": "2026-09-21", "AirlineID": "UA", "ConnectionID": "0941", "FlightPrice": "647.87", "CurrencyCode": "USD" },
+        { "TravelID": "00000005", "BookingID": "0002", "FlightDate": "2026-09-25", "AirlineID": "UA", "ConnectionID": "0942", "FlightPrice": "647.88", "CurrencyCode": "USD" }
+      ] },
+    { "TravelID": "00000006", "AgencyID": "070001", "CustomerID": "000106", "CustomerName": "Jonas Berg", "BeginDate": "2026-12-01", "EndDate": "2026-12-05", "BookingFee": "25.00", "TotalPrice": "890.00", "CurrencyCode": "SEK", "Description": "Year-end review Stockholm", "OverallStatus": "O",
+      "_Booking": [
+        { "TravelID": "00000006", "BookingID": "0001", "FlightDate": "2026-12-01", "AirlineID": "SK", "ConnectionID": "0521", "FlightPrice": "432.50", "CurrencyCode": "SEK" },
+        { "TravelID": "00000006", "BookingID": "0002", "FlightDate": "2026-12-05", "AirlineID": "SK", "ConnectionID": "0522", "FlightPrice": "432.50", "CurrencyCode": "SEK" }
+      ] },
+    { "TravelID": "00000007", "AgencyID": "070003", "CustomerID": "000107", "CustomerName": "Maria Garcia", "BeginDate": "2026-10-18", "EndDate": "2026-10-22", "BookingFee": "18.00", "TotalPrice": "760.40", "CurrencyCode": "EUR", "Description": "Partner onboarding Madrid", "OverallStatus": "A",
+      "_Booking": [
+        { "TravelID": "00000007", "BookingID": "0001", "FlightDate": "2026-10-18", "AirlineID": "IB", "ConnectionID": "3212", "FlightPrice": "371.20", "CurrencyCode": "EUR" },
+        { "TravelID": "00000007", "BookingID": "0002", "FlightDate": "2026-10-22", "AirlineID": "IB", "ConnectionID": "3213", "FlightPrice": "371.20", "CurrencyCode": "EUR" }
+      ] },
+    { "TravelID": "00000008", "AgencyID": "070002", "CustomerID": "000108", "CustomerName": "Kenji Watanabe", "BeginDate": "2027-01-12", "EndDate": "2027-01-19", "BookingFee": "40.00", "TotalPrice": "3105.00", "CurrencyCode": "JPY", "Description": "Factory automation kickoff Osaka", "OverallStatus": "O",
+      "_Booking": [
+        { "TravelID": "00000008", "BookingID": "0001", "FlightDate": "2027-01-12", "AirlineID": "NH", "ConnectionID": "0223", "FlightPrice": "1532.50", "CurrencyCode": "JPY" },
+        { "TravelID": "00000008", "BookingID": "0002", "FlightDate": "2027-01-19", "AirlineID": "NH", "ConnectionID": "0224", "FlightPrice": "1532.50", "CurrencyCode": "JPY" }
+      ] },
+    { "TravelID": "00000009", "AgencyID": "070001", "CustomerID": "000109", "CustomerName": "Chloe Tremblay", "BeginDate": "2026-09-05", "EndDate": "2026-09-08", "BookingFee": "12.50", "TotalPrice": "615.30", "CurrencyCode": "CAD", "Description": "Design sprint Toronto", "OverallStatus": "A",
+      "_Booking": [
+        { "TravelID": "00000009", "BookingID": "0001", "FlightDate": "2026-09-05", "AirlineID": "AC", "ConnectionID": "0457", "FlightPrice": "301.40", "CurrencyCode": "CAD" },
+        { "TravelID": "00000009", "BookingID": "0002", "FlightDate": "2026-09-08", "AirlineID": "AC", "ConnectionID": "0458", "FlightPrice": "301.40", "CurrencyCode": "CAD" }
+      ] },
+    { "TravelID": "00000010", "AgencyID": "070003", "CustomerID": "000110", "CustomerName": "Fatima Al-Sayed", "BeginDate": "2026-11-03", "EndDate": "2026-11-06", "BookingFee": "22.00", "TotalPrice": "1150.00", "CurrencyCode": "AED", "Description": "Rollout planning Dubai", "OverallStatus": "X",
+      "_Booking": [
+        { "TravelID": "00000010", "BookingID": "0001", "FlightDate": "2026-11-03", "AirlineID": "EK", "ConnectionID": "0044", "FlightPrice": "564.00", "CurrencyCode": "AED" },
+        { "TravelID": "00000010", "BookingID": "0002", "FlightDate": "2026-11-06", "AirlineID": "EK", "ConnectionID": "0045", "FlightPrice": "564.00", "CurrencyCode": "AED" }
+      ] },
+    { "TravelID": "00000011", "AgencyID": "070002", "CustomerID": "000111", "CustomerName": "Lucas Oliveira", "BeginDate": "2026-10-27", "EndDate": "2026-11-01", "BookingFee": "30.00", "TotalPrice": "2044.90", "CurrencyCode": "BRL", "Description": "Go-live support Sao Paulo", "OverallStatus": "A",
+      "_Booking": [
+        { "TravelID": "00000011", "BookingID": "0001", "FlightDate": "2026-10-27", "AirlineID": "LA", "ConnectionID": "8071", "FlightPrice": "1007.45", "CurrencyCode": "BRL" },
+        { "TravelID": "00000011", "BookingID": "0002", "FlightDate": "2026-11-01", "AirlineID": "LA", "ConnectionID": "8072", "FlightPrice": "1007.45", "CurrencyCode": "BRL" }
+      ] },
+    { "TravelID": "00000012", "AgencyID": "070001", "CustomerID": "000112", "CustomerName": "Emma Novak", "BeginDate": "2026-09-14", "EndDate": "2026-09-16", "BookingFee": "8.00", "TotalPrice": "402.00", "CurrencyCode": "EUR", "Description": "Audit prep Prague", "OverallStatus": "O",
+      "_Booking": [
+        { "TravelID": "00000012", "BookingID": "0001", "FlightDate": "2026-09-14", "AirlineID": "OK", "ConnectionID": "0716", "FlightPrice": "197.00", "CurrencyCode": "EUR" },
+        { "TravelID": "00000012", "BookingID": "0002", "FlightDate": "2026-09-16", "AirlineID": "OK", "ConnectionID": "0717", "FlightPrice": "197.00", "CurrencyCode": "EUR" }
+      ] }
+  ]
+}
