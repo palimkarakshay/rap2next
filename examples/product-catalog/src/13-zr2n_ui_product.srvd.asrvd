@@ -1,5 +1,0 @@
-@EndUserText.label: 'rap2next demo: Product Catalog UI service'
-define service ZR2N_UI_PRODUCT {
-  expose ZR2N_C_Product   as Product;
-  expose ZR2N_C_PriceTier as PriceTier;
-}

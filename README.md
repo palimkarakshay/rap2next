@@ -46,10 +46,11 @@ Credentials stay server-side (Next.js route handlers); the browser never sees SA
 
 ## Test it against a real system
 
-[`examples/product-catalog/`](examples/product-catalog/) is a complete copy-paste
-RAP sample (managed BO on C1-released APIs: `I_Currency`, `I_Country`,
-`I_UnitOfMeasure`, UUID keys) with an ADT walkthrough for BTP ABAP trial or
-S/4HANA 2022+, a demo-data generator, and a 11-point verification checklist.
+[`examples/product-catalog/`](examples/product-catalog/) is a complete RAP sample
+(managed BO on C1-released APIs: `I_Currency`, `I_Country`, `I_UnitOfMeasure`,
+UUID keys) shipped as an **abapGit-importable package** — clone this repo in
+abapGit/ADT and pull. Walkthrough for BTP ABAP trial or S/4HANA 2022+, demo-data
+generator, and an 11-point verification checklist included.
 
 ## Status & roadmap
 

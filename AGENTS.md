@@ -11,6 +11,10 @@ Public OSS (MIT) under github.com/palimkarakshay. Read docs/ARCHITECTURE.md firs
   - `web/lib/` — metadata layer (@sap-ux/edmx-parser + annotation-converter → ServiceModel).
   - `web/app/api/odata/[...path]/` — proxy (mock fixture or live SAP forward; auth server-only).
   - `web/fixtures/travel/` — RAP-Travel-style $metadata + data; doubles as the parser spec.
+- `examples/product-catalog/abap/` — abapGit-importable RAP sample package (ZR2N_*,
+  langu version 5); repo-root `.abapgit.xml` targets this folder. Serialization
+  shapes mirror SAP-samples/abap-platform-refscen-flight (ABAP-platform-cloud) —
+  keep them in that format; abaplint (Cloud, deps) must stay at 0 issues.
 
 ## Invariants
 - Backend stays 100% native SAP: no Z-artifacts required on the ABAP side, ever.

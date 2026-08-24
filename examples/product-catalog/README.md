@@ -28,36 +28,65 @@ metadata extensions → service definition/binding — with **zero frontend arti
 | Labels | `@EndUserText.label` → `Common.Label` |
 | Publication intent | only annotated sets get home cards |
 
-## Part 1 — Create the ABAP objects (ADT, ~20 minutes)
+## Part 1 — Get the objects into the system
 
 > ⚠ On a **shared trial system**: work only in your own Z-package, never touch
 > foreign objects. Demo-data reset deletes only this example's own tables.
 
-1. Create package `ZR2N_DEMO` (superpackage as usual on your system, e.g. `ZLOCAL`).
-2. Create the objects **in file order** from `src/`, copy-pasting each source:
-   - `01`/`02` — database tables `ZR2N_APROD`, `ZR2N_APRICE`. Activate.
-   - `03`/`04` — data definitions `ZR2N_I_PRODUCT`, `ZR2N_I_PRICETIER`.
-     They reference each other (composition ↔ parent): create both, then
-     **activate both together** (Ctrl+Shift+F3 multi-select).
-   - `05` — behavior definition on `ZR2N_I_PRODUCT` (managed, strict(2), UUID
-     numbering). Activate.
-   - `06`/`07` — behavior implementation class `ZBP_R2N_I_PRODUCT` (global class +
-     *Local Types* tab gets `07-…locals_imp`). The empty instance-authorization
-     handler = unrestricted; **demo only** — write real checks before production.
-   - `08`/`09` — projection views (note `@Metadata.allowExtensions: true` — without
-     it the metadata extensions won't activate). Activate together.
-   - `10` — projection behavior definition. Activate.
-   - `11`/`12` — **metadata extensions** — this is everything rap2next renders.
-     Activate.
-   - `13` — service definition `ZR2N_UI_PRODUCT`. Activate.
-3. **Service binding** (wizard, no source file): right-click `ZR2N_UI_PRODUCT` →
-   New Service Binding → name `ZR2N_UI_PRODUCT_O4`, binding type
-   **OData V4 – UI**. Activate, then press **Publish**.
-   Sanity check: the binding's *Preview…* button must show a working Fiori
-   Elements list — if Fiori Elements renders it, rap2next has everything it needs.
-4. Load demo data: open `ZR2N_CL_DEMO_DATA` (file `14`), run with **F9**.
-   Expected console output: `I_Currency check: 4/4` and
-   `Inserted 12 products and 36 price tiers.`
+The [`abap/`](abap/) folder is a full **abapGit package** (serialization shapes
+mirrored from SAP's own Flight Reference Scenario repo, `ABAP-platform-cloud`
+branch; ABAP language version 5 = ABAP for Cloud Development).
+
+### Option A — abapGit import (recommended)
+
+- **BTP ABAP Environment (incl. trial):** ADT → *abapGit Repositories* view →
+  Link → URL `https://github.com/palimkarakshay/rap2next.git`, branch `main`,
+  into a new package `ZR2N_DEMO` → **Pull**. The repo-root `.abapgit.xml` points
+  abapGit at `examples/product-catalog/abap/` automatically.
+- **On-premise S/4HANA (2022+):** standalone abapGit → *New Online* with the same
+  URL/branch → package `ZR2N_DEMO` → **Pull**, activate all in the popup.
+- The service binding `ZR2N_UI_PRODUCT_O4` is part of the package. Open it,
+  **Activate** if needed, then press **Publish**. (If your abapGit version balks
+  at the SRVB object, just delete it and recreate in 1 minute: right-click
+  `ZR2N_UI_PRODUCT` → New Service Binding → **OData V4 – UI** → activate → publish.)
+- Sanity check: the binding's *Preview…* must show a working Fiori Elements list —
+  if Fiori Elements renders it, rap2next has everything it needs.
+- Load demo data: run `ZR2N_CL_DEMO_DATA` with **F9**. Expected output:
+  `I_Currency check: 4/4` and `Inserted 12 products and 36 price tiers.`
+
+### Option B — manual copy-paste (~20 min)
+
+Every `abap/` source file is plain text — paste in this order, activating as you go:
+1. Tables `ZR2N_APROD`, `ZR2N_APRICE` — they ship as abapGit XML, so use the DDL
+   below for manual creation:
+
+   ```abap
+   " ZR2N_APROD                                " ZR2N_APRICE
+   key client     : abap.clnt not null;        key client    : abap.clnt not null;
+   key prod_uuid  : sysuuid_x16 not null;      key tier_uuid : sysuuid_x16 not null;
+   product_id     : abap.char(10) not null;    prod_uuid     : sysuuid_x16 not null;
+   product_name   : abap.char(60);             min_qty       : abap.quan(13,3);
+   category       : abap.char(20);             qty_unit      : abap.unit(3);
+   origin_country : abap.char(3);              @Semantics.amount.currencyCode : 'zr2n_aprice.currency_code'
+   base_unit      : abap.unit(3);              tier_price    : abap.curr(15,2);
+   @Semantics.amount.currencyCode : 'zr2n_aprod.currency_code'
+   list_price     : abap.curr(15,2);           currency_code : abap.cuky;
+   currency_code  : abap.cuky;                 valid_from    : abap.dats;
+   in_stock       : abap_boolean;
+   description    : abap.char(255);
+   created_at     : timestampl;
+   changed_at     : timestampl;
+   ```
+2. `zr2n_i_product.ddls.asddls` + `zr2n_i_pricetier.ddls.asddls` — create both,
+   **activate together** (they reference each other).
+3. `zr2n_i_product.bdef.asbdef`, then class `ZBP_R2N_I_PRODUCT`
+   (`.clas.abap` + the `locals_imp` file into the *Local Types* tab). The empty
+   instance-authorization handler = unrestricted; **demo only**.
+4. `zr2n_c_product.ddls.asddls` + `zr2n_c_pricetier.ddls.asddls` (activate
+   together; note `@Metadata.allowExtensions: true`), then `zr2n_c_product.bdef.asbdef`.
+5. Metadata extensions `*.ddlx.asddlxs` — everything rap2next renders.
+6. `zr2n_ui_product.srvd.srvdsrv`, then the service binding + publish + demo data
+   as in Option A.
 
 ## Part 2 — Reach the service from outside SAP
 

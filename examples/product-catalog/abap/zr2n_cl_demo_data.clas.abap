@@ -49,7 +49,7 @@ CLASS zr2n_cl_demo_data IMPLEMENTATION.
 
     DATA products TYPE STANDARD TABLE OF zr2n_aprod WITH EMPTY KEY.
     DATA tiers    TYPE STANDARD TABLE OF zr2n_aprice WITH EMPTY KEY.
-    DATA(now) = utclong_current( ).
+    GET TIME STAMP FIELD DATA(now).
 
     LOOP AT seeds INTO DATA(seed).
       TRY.
