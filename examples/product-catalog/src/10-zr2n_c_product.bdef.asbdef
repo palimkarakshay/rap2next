@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+
+define behavior for ZR2N_C_Product alias Product
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _PriceTier { create; }
+}
+
+define behavior for ZR2N_C_PriceTier alias PriceTier
+{
+  use update;
+  use delete;
+
+  use association _Product;
+}

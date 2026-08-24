@@ -1,0 +1,30 @@
+@Metadata.layer: #CUSTOMER
+@UI: { headerInfo: { typeName: 'Price Tier', typeNamePlural: 'Price Tiers' } }
+annotate view ZR2N_C_PriceTier with
+{
+  @UI.hidden: true
+  TierUUID;
+
+  @UI.hidden: true
+  ProductUUID;
+
+  @EndUserText.label: 'Minimum Qty'
+  @UI.lineItem: [ { position: 10 } ]
+  MinQty;
+
+  @EndUserText.label: 'Unit'
+  @UI.lineItem: [ { position: 20 } ]
+  QtyUnit;
+
+  @EndUserText.label: 'Tier Price'
+  @UI.lineItem: [ { position: 30 } ]
+  TierPrice;
+
+  @EndUserText.label: 'Currency'
+  @UI.lineItem: [ { position: 40 } ]
+  CurrencyCode;
+
+  @EndUserText.label: 'Valid From'
+  @UI.lineItem: [ { position: 50 } ]
+  ValidFrom;
+}

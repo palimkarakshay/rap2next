@@ -1,0 +1,31 @@
+managed implementation in class zbp_r2n_i_product unique;
+strict ( 2 );
+
+define behavior for ZR2N_I_Product alias Product
+persistent table zr2n_aprod
+lock master
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) ProductUUID;
+  field ( readonly ) CreatedAt, ChangedAt;
+
+  association _PriceTier { create; }
+}
+
+define behavior for ZR2N_I_PriceTier alias PriceTier
+persistent table zr2n_aprice
+lock dependent by _Product
+authorization dependent by _Product
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) TierUUID;
+  field ( readonly ) ProductUUID;
+
+  association _Product;
+}

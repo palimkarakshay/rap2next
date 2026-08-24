@@ -1,0 +1,58 @@
+@Metadata.layer: #CUSTOMER
+@UI: { headerInfo: { typeName: 'Product',
+                     typeNamePlural: 'Products',
+                     title: { type: #STANDARD, value: 'ProductName' },
+                     description: { type: #STANDARD, value: 'Description' } } }
+annotate view ZR2N_C_Product with
+{
+  @UI.facet: [ { id: 'General',   type: #FIELDGROUP_REFERENCE, targetQualifier: 'General',   label: 'General',     position: 10 },
+               { id: 'Logistics', type: #FIELDGROUP_REFERENCE, targetQualifier: 'Logistics', label: 'Logistics',   position: 20 },
+               { id: 'Pricing',   type: #FIELDGROUP_REFERENCE, targetQualifier: 'Pricing',   label: 'Pricing',     position: 30 },
+               { id: 'Tiers',     type: #LINEITEM_REFERENCE,   targetElement: '_PriceTier',  label: 'Price Tiers', position: 40 } ]
+
+  @UI.hidden: true
+  ProductUUID;
+
+  @EndUserText.label: 'Product ID'
+  @UI.lineItem: [ { position: 10 } ]
+  ProductID;
+
+  @EndUserText.label: 'Product'
+  @UI: { lineItem:       [ { position: 20 } ],
+         selectionField: [ { position: 10 } ],
+         fieldGroup:     [ { qualifier: 'General', position: 10 } ] }
+  ProductName;
+
+  @EndUserText.label: 'Category'
+  @UI: { lineItem:       [ { position: 30 } ],
+         selectionField: [ { position: 20 } ],
+         fieldGroup:     [ { qualifier: 'General', position: 20 } ] }
+  Category;
+
+  @EndUserText.label: 'Country of Origin'
+  @UI: { selectionField: [ { position: 30 } ],
+         fieldGroup:     [ { qualifier: 'Logistics', position: 10 } ] }
+  OriginCountry;
+
+  @EndUserText.label: 'Base Unit'
+  @UI.fieldGroup: [ { qualifier: 'Logistics', position: 20 } ]
+  BaseUnit;
+
+  @EndUserText.label: 'List Price'
+  @UI: { lineItem:   [ { position: 40 } ],
+         fieldGroup: [ { qualifier: 'Pricing', position: 10 } ] }
+  ListPrice;
+
+  @EndUserText.label: 'Currency'
+  @UI.fieldGroup: [ { qualifier: 'Pricing', position: 20 } ]
+  CurrencyCode;
+
+  @EndUserText.label: 'In Stock'
+  @UI: { lineItem:   [ { position: 50 } ],
+         fieldGroup: [ { qualifier: 'Logistics', position: 30 } ] }
+  InStock;
+
+  @EndUserText.label: 'Description'
+  @UI.fieldGroup: [ { qualifier: 'General', position: 30 } ]
+  Description;
+}

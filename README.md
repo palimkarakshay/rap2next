@@ -44,6 +44,13 @@ SAP_USER=... SAP_PASSWORD=... npm run dev
 
 Credentials stay server-side (Next.js route handlers); the browser never sees SAP.
 
+## Test it against a real system
+
+[`examples/product-catalog/`](examples/product-catalog/) is a complete copy-paste
+RAP sample (managed BO on C1-released APIs: `I_Currency`, `I_Country`,
+`I_UnitOfMeasure`, UUID keys) with an ADT walkthrough for BTP ABAP trial or
+S/4HANA 2022+, a demo-data generator, and a 11-point verification checklist.
+
 ## Status & roadmap
 
 **v0.1 — read-only floorplans** (List Report, Object Page), verified against the bundled
